@@ -1,0 +1,56 @@
+project_name: privrew
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - binary: privrew
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -mod=vendor
+    asmflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    gcflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    ldflags:
+      - -s -w
+      - -X main.oopsVersion={{.Version}}
+    ignore:
+      - goos: windows
+        goarch: arm64
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64      
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+release:
+  github:
+    owner: ghdwlsgur
+    name: privrew
+brews:
+  - name: privrew
+    homepage: "https://github.com/ghdwlsgur/privrew"
+    description: "It is a CLI tool that makes it easier to deploy private repositories."
+    tap:
+      owner: ghdwlsgur
+      name: homebrew-privrew
+    commit_author:
+      name: ghdwlsgur
+      email: vjinhyeokv@gmail.com
