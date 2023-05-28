@@ -11,8 +11,8 @@ import (
 var (
 	rootCmd = &cobra.Command{
 		Use:   "privrew",
-		Short: "...",
-		Long:  "...",
+		Short: "It is a CLI tool for downloading software distributed in private repositories on GitHub",
+		Long:  "It is a CLI tool for downloading software distributed in private repositories on GitHub",
 	}
 )
 

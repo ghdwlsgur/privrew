@@ -13,17 +13,17 @@ import (
 var (
 	installCommand = &cobra.Command{
 		Use:   "install",
-		Short: "...",
-		Long:  "...",
+		Short: "Download the released software from the private repository.",
+		Long:  "Download the released software from the private repository.",
 		Run: func(cmd *cobra.Command, args []string) {
 			var (
 				err   error
 				table map[string]internal.Asset
 			)
 
-			// if err = cobra.NoArgs(cmd, args); err != nil {
-			// 	panicRed(err)
-			// }
+			if err = cobra.NoArgs(cmd, args); err != nil {
+				panicRed(err)
+			}
 			if err = cobra.MinimumNArgs(1)(cmd, args); err != nil {
 				panicRed(err)
 			}
@@ -33,7 +33,7 @@ var (
 			token := viper.GetString("install-token")
 
 			if token == "" {
-				panicRed(fmt.Errorf("..."))
+				panicRed(fmt.Errorf("Please enter the token value."))
 			}
 
 			repo := &internal.Repository{
@@ -77,7 +77,7 @@ var (
 )
 
 func init() {
-	installCommand.Flags().StringP("token", "t", "", "...")
+	installCommand.Flags().StringP("token", "t", "", "Accessible token for the private repository.")
 	viper.BindPFlag("install-token", installCommand.Flag("token"))
 
 	rootCmd.AddCommand(installCommand)
