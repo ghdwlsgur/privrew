@@ -21,9 +21,10 @@ var (
 				table map[string]internal.Asset
 			)
 
-			if err = cobra.NoArgs(cmd, args); err != nil {
+			if err = cobra.NoArgs(cmd, args); err == nil {
 				panicRed(err)
 			}
+
 			if err = cobra.MinimumNArgs(1)(cmd, args); err != nil {
 				panicRed(err)
 			}
