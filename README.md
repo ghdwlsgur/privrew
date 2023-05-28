@@ -4,20 +4,35 @@ This tool is designed to allow downloading of software programs released in priv
 
 </div>
 
-### How to Install
+---
+
+## How to Install
 
 ```bash
 brew tap ghdwlsgur/privrew
 brew install privrew
 ```
 
-### How to Use
+---
+
+## How to Use
 
 1. It issues a token exclusive to private repositories that have released software
 
    > Settings > Developer settings > Personal access tokens
 
-2. ```bash
-       privrew install [OWNER]/[REPO] -t [REPO_TOKEN]
-       privrew install ghdwlsgur/example -t github_pat_1234
-   ```
+2. Tap (Optional)
+
+```bash
+  privrew tap [OWNER]/[REPO] -t [REPO_TOKEN]
+  # example
+  privrew tap ghdwlsgur/example -t github_pat_1234
+```
+
+3. Install
+
+```bash
+  privrew install [OWNER]/[REPO] -t [REPO_TOKEN]
+  # example
+  privrew install ghdwlsgur/example -t github_pat_1234
+```
